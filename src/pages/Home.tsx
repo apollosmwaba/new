@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Play, ArrowRight, CheckCircle } from 'lucide-react';
 import { images } from '../constants/images';
+import sound from '../../public/images/spund.png';
+import crusade from '../../public/images/1.jpg';
+import linus from '../../public/images/PILLAR.jpg';
+import TypingEffect from '../components/TypingEffect';
 
-const heroImages = [images.hero1, images.hero2, images.hero3, images.hero4];
+const heroImages = [crusade, images.hero2, images.hero3, sound];
+// images.hero1
 
 const slides = [
   {
@@ -107,45 +112,39 @@ export default function Home() {
                 transition: 'transform 8s ease-out',
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-900/80 via-brand-900/50 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-900/60 via-transparent to-brand-900/30" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-900/95 via-brand-900/70 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-900/80 via-transparent to-brand-900/50" />
           </div>
         ))}
 
         {/* Content */}
-        <div className="relative h-full flex items-center">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+        <div className="relative h-full flex items-center justify-center px-4 sm:px-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
             <motion.div
               key={currentSlide}
               initial="hidden"
               animate="visible"
               variants={stagger}
-              className="max-w-3xl"
+              className="max-w-4xl mx-auto px-2 sm:px-0"
             >
-              <motion.p variants={fadeUp} className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-3">
-                {slides[currentSlide].eyebrow}
-              </motion.p>
-              <motion.p variants={fadeUp} className="text-white/60 text-xs font-medium tracking-[0.5em] uppercase mb-6">
-                {slides[currentSlide].country}
-              </motion.p>
-              <motion.h1 variants={fadeUp} className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-4">
+              <motion.h1 variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white leading-[1.1] mb-3 sm:mb-4">
                 {slides[currentSlide].heading}
               </motion.h1>
               {slides[currentSlide].subheading && (
-                <motion.p variants={fadeUp} className="text-accent text-xs sm:text-sm font-medium tracking-wider uppercase mb-4">
-                  {slides[currentSlide].subheading}
+                <motion.p variants={fadeUp} className="text-accent text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-wider uppercase mb-3 sm:mb-4 drop-shadow-lg text-stroke-white">
+                  <TypingEffect text={slides[currentSlide].subheading} speed={30} />
                 </motion.p>
               )}
-              <motion.p variants={fadeUp} className="text-brand-300 text-base sm:text-lg leading-relaxed mb-8 max-w-xl">
+              <motion.p variants={fadeUp} className="text-brand-300 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
                 {slides[currentSlide].description}
               </motion.p>
               <motion.div variants={fadeUp}>
                 <Link
                   to={slides[currentSlide].ctaLink}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-accent text-white font-semibold text-sm uppercase tracking-wider hover:bg-accent-dark transition-all duration-300 group"
+                  className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-accent text-white font-semibold text-xs sm:text-sm uppercase tracking-wider hover:bg-accent-dark transition-all duration-300 group"
                 >
                   {slides[currentSlide].cta}
-                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </motion.div>
             </motion.div>
@@ -153,34 +152,34 @@ export default function Home() {
         </div>
 
         {/* Slide Controls */}
-        <div className="absolute bottom-8 left-0 right-0">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+        <div className="absolute bottom-4 sm:bottom-8 left-0 right-0">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
             {/* Slide Counter */}
-            <div className="flex items-center gap-4">
-              <span className="text-white text-2xl font-bold font-display">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <span className="text-white text-xl sm:text-2xl font-bold font-display">
                 {String(currentSlide + 1).padStart(2, '0')}
               </span>
-              <div className="w-12 h-[1px] bg-white/30" />
-              <span className="text-white/50 text-sm">
+              <div className="w-8 sm:w-12 h-[1px] bg-white/30" />
+              <span className="text-white/50 text-xs sm:text-sm">
                 {String(slides.length).padStart(2, '0')}
               </span>
             </div>
 
             {/* Navigation Arrows */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={prevSlide}
-                className="w-12 h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-brand-900 transition-all duration-300"
+                className="w-10 h-10 sm:w-12 sm:h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-brand-900 transition-all duration-300"
                 aria-label="Previous slide"
               >
-                <ChevronLeft size={20} />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
               <button
                 onClick={nextSlide}
-                className="w-12 h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-brand-900 transition-all duration-300"
+                className="w-10 h-10 sm:w-12 sm:h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-brand-900 transition-all duration-300"
                 aria-label="Next slide"
               >
-                <ChevronRight size={20} />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
@@ -196,9 +195,9 @@ export default function Home() {
       </section>
 
       {/* ABOUT PREVIEW */}
-      <section className="py-24 lg:py-32 bg-brand-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 sm:py-20 lg:py-32 bg-brand-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -209,13 +208,15 @@ export default function Home() {
                 About Us
               </motion.p>
               <motion.h2 variants={fadeUp} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-900 leading-tight mb-6">
-                Built to Capture.<br />Created to Deliver.
+                Pillar of Stone Zambia
               </motion.h2>
               <motion.p variants={fadeUp} className="text-brand-600 text-lg leading-relaxed mb-6">
-                Pillar of Stone Zambia is a premier multimedia and printing company dedicated to delivering exceptional event coverage and high-quality printing solutions across Zambia.
+                is a premier multimedia and printing company dedicated to delivering exceptional event coverage and high-quality printing solutions.We specialize in providing professional media coverage and printing services for a wide variety of events across Zambia.<br />
+                <br />
+                As your trusted event partner, we offer comprehensive media coverage including videography, photography, and sound system rentals for churches, rallies, weddings, kitchen parties, graduations, Chilanga Mulilo, birthdays, fashion shoots, engagements, anniversaries, studios, and corporate events.
               </motion.p>
               <motion.p variants={fadeUp} className="text-brand-500 leading-relaxed mb-8">
-                From corporate events and political rallies to weddings and church services, we bring professional-grade equipment and experienced crews to every production. Our commitment to quality and reliability has made us the trusted media partner for organizations and individuals throughout Zambia.
+                Located at Mphangwe Holdings Building, Plot 704 Freedom Way, Kabwe, we serve clients across Zambia with state-of-the-art equipment and personalized service tailored to your specific needs.
               </motion.p>
               <motion.div variants={fadeUp}>
                 <Link
@@ -236,13 +237,15 @@ export default function Home() {
               className="relative"
             >
               <div className="relative">
-                <img
+                {/* <img
 src={images.hero3}
                 alt="Professional event coverage by Pillar of Stone Zambia"                  className="w-full h-[400px] lg:h-[500px] object-cover"
-                />
-                <div className="absolute -bottom-6 -left-6 bg-brand-900 text-white p-6 lg:p-8">
-                  <div className="text-3xl lg:text-4xl font-bold font-display text-accent">500+</div>
-                  <div className="text-sm text-brand-300 mt-1">Events Covered</div>
+                /> */}
+
+                <img src={linus} alt="pillar" className="w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] xl:h-[700px] object-cover" />
+                <div className="absolute -bottom-4 sm:-bottom-6 -left-4 sm:-left-6 bg-brand-900 text-white p-4 sm:p-6 lg:p-8">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-accent">10+</div>
+                  <div className="text-xs sm:text-sm text-brand-300 mt-1">Years</div>
                 </div>
               </div>
             </motion.div>
@@ -251,8 +254,8 @@ src={images.hero3}
       </section>
 
       {/* SERVICES PREVIEW */}
-      <section className="py-24 lg:py-32 bg-brand-900">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-32 bg-brand-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -268,7 +271,7 @@ src={images.hero3}
             </motion.h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-700">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-brand-700">
             {[
               { num: '01', title: 'Media Coverage', desc: 'Professional video coverage for weddings, church services, corporate events, rallies and more, with livestreaming capabilities.', img: images.hero1 },
               { num: '02', title: 'Photography', desc: 'Capturing important moments with professional photography services for events, portraits, fashion shoots and more.', img: images.hero3 },
@@ -281,14 +284,14 @@ src={images.hero3}
                 whileInView="visible"
                 viewport={{ once: true, margin: '-50px' }}
                 variants={fadeUp}
-                className="group relative bg-brand-800 p-8 lg:p-12 hover:bg-brand-700 transition-colors duration-500 cursor-pointer"
+                className="group relative bg-brand-800 p-6 sm:p-8 lg:p-12 hover:bg-brand-700 transition-colors duration-500 cursor-pointer"
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
                   <img src={service.img} alt="" className="w-full h-full object-cover" />
                 </div>
                 <div className="relative z-10">
                   <span className="text-accent text-sm font-bold tracking-wider">{service.num}</span>
-                  <h3 className="font-display text-2xl lg:text-3xl font-bold text-white mt-3 mb-4">{service.title}</h3>
+                  <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-white mt-3 mb-4">{service.title}</h3>
                   <p className="text-brand-400 leading-relaxed mb-6">{service.desc}</p>
                   <Link
                     to="/services"
@@ -304,9 +307,9 @@ src={images.hero3}
       </section>
 
       {/* WHY CHOOSE US */}
-      <section className="py-24 lg:py-32 bg-brand-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <section className="py-16 sm:py-20 lg:py-32 bg-brand-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -357,8 +360,8 @@ src={images.hero3}
       </section>
 
       {/* YOUTUBE / MEDIA SECTION */}
-      <section className="py-24 lg:py-32 bg-brand-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-32 bg-brand-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -377,7 +380,7 @@ src={images.hero3}
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {videos.slice(0, 3).map((video, index) => (
               <motion.a
                 key={video.id}
@@ -427,8 +430,8 @@ src={images.hero3}
       </section>
 
       {/* PORTFOLIO PREVIEW */}
-      <section className="py-24 lg:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -447,7 +450,7 @@ src={images.hero3}
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {[
               { title: 'Wedding Coverage', category: 'Weddings', img: 'https://pillarofstonezm.netlify.app/images/MEDIa.jpg' },
               { title: 'Corporate Event', category: 'Corporate', img: 'https://pillarofstonezm.netlify.app/images/MEDIa.jpg' },
@@ -496,35 +499,35 @@ src={images.hero3}
       </section>
 
       {/* CTA SECTION */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
+      <section className="relative py-16 sm:py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <img src={images.hero1} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-brand-900/85" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
           >
-            <motion.h2 variants={fadeUp} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+            <motion.h2 variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 sm:mb-6">
               Planning an Event?
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-brand-300 text-lg max-w-2xl mx-auto mb-10">
+            <motion.p variants={fadeUp} className="text-brand-300 text-base sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-10 px-2">
               Let us help you make it unforgettable with our professional media coverage and printing services.
             </motion.p>
-            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-accent text-white font-semibold text-sm uppercase tracking-wider hover:bg-accent-dark transition-all duration-300 group"
+                className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-accent text-white font-semibold text-xs sm:text-sm uppercase tracking-wider hover:bg-accent-dark transition-all duration-300 group w-full sm:w-auto justify-center"
               >
                 Contact Us Now
-                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-3 px-8 py-4 border-2 border-white text-white font-semibold text-sm uppercase tracking-wider hover:bg-white hover:text-brand-900 transition-all duration-300"
+                className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white font-semibold text-xs sm:text-sm uppercase tracking-wider hover:bg-white hover:text-brand-900 transition-all duration-300 w-full sm:w-auto justify-center"
               >
                 Get a Quote
               </Link>

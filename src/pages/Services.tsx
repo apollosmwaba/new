@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { ArrowRight, Video, Camera, Volume2, Printer } from 'lucide-react';
 import { images } from '../constants/images';
 
@@ -80,26 +81,28 @@ const services = [
 ];
 
 export default function Services() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <div>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 bg-brand-900">
+      <section className="relative pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 lg:pt-40 lg:pb-32 bg-brand-900">
         <div className="absolute inset-0 opacity-20">
           <img src={images.hero4} alt="" className="w-full h-full object-cover" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={stagger}
           >
-            <motion.p variants={fadeUp} className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-4">
+            <motion.p variants={fadeUp} className="text-accent text-xs sm:text-sm font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4">
               Our Services
             </motion.p>
-            <motion.h1 variants={fadeUp} className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            <motion.h1 variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-4 sm:mb-6">
               Professional Solutions<br />for Every Event
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-brand-300 text-lg max-w-2xl leading-relaxed">
+            <motion.p variants={fadeUp} className="text-brand-300 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
               From media production to printing, we offer comprehensive services designed to make your event a success.
             </motion.p>
           </motion.div>
@@ -107,8 +110,8 @@ export default function Services() {
       </section>
 
       {/* Services Detail */}
-      <section className="py-24 lg:py-32 bg-brand-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-32 bg-brand-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-24">
             {services.map((service, index) => (
               <motion.div
@@ -117,32 +120,46 @@ export default function Services() {
                 whileInView="visible"
                 viewport={{ once: true, margin: '-100px' }}
                 variants={stagger}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center ${
                   index % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
                 <motion.div variants={fadeUp} className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                  <div className="relative overflow-hidden">
+                  <div
+                    className="relative overflow-hidden group"
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    onTouchStart={() => setHoveredIndex(index)}
+                    onTouchEnd={() => setHoveredIndex(null)}
+                  >
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-[300px] lg:h-[400px] object-cover"
+                      className="w-full h-[250px] sm:h-[300px] lg:h-[400px] object-cover"
                     />
-                    <div className="absolute top-6 left-6 bg-accent text-white px-4 py-2">
-                      <span className="text-sm font-bold tracking-wider">{service.num}</span>
+                    <div className="absolute top-4 sm:top-6 left-4 sm:left-6 bg-accent text-white px-3 sm:px-4 py-2">
+                      <span className="text-xs sm:text-sm font-bold tracking-wider">{service.num}</span>
+                    </div>
+                    {/* Overlay with description on hover/tap */}
+                    <div className={`absolute inset-0 bg-brand-900/90 transition-opacity duration-300 flex items-center justify-center p-6 ${
+                      hoveredIndex === index ? 'opacity-100' : 'opacity-0'
+                    }`}>
+                      <p className="text-white text-sm sm:text-base text-center leading-relaxed">
+                        {service.description}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
 
                 <motion.div variants={fadeUp} className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-accent/10 flex items-center justify-center">
-                      <service.icon size={22} className="text-accent" />
+                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 flex items-center justify-center">
+                      <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
                     </div>
-                    <span className="text-accent text-sm font-semibold tracking-wider uppercase">{service.subtitle}</span>
+                    <span className="text-accent text-xs sm:text-sm font-semibold tracking-wider uppercase">{service.subtitle}</span>
                   </div>
-                  <h2 className="font-display text-3xl sm:text-4xl font-bold text-brand-900 mb-4">{service.title}</h2>
-                  <p className="text-brand-500 text-lg leading-relaxed mb-8">{service.description}</p>
+                  <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-brand-900 mb-3 sm:mb-4">{service.title}</h2>
+                  <p className="text-brand-500 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8">{service.description}</p>
                   <ul className="space-y-3 mb-8">
                     {service.features.map((feature, fIndex) => (
                       <li key={fIndex} className="flex items-center gap-3 text-brand-600">
@@ -153,9 +170,9 @@ export default function Services() {
                   </ul>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 text-brand-900 font-semibold text-sm uppercase tracking-wider border-b-2 border-accent pb-1 hover:text-accent transition-colors duration-300"
+                    className="inline-flex items-center gap-2 text-brand-900 font-semibold text-xs sm:text-sm uppercase tracking-wider border-b-2 border-accent pb-1 hover:text-accent transition-colors duration-300"
                   >
-                    Learn More <ArrowRight size={14} />
+                    Learn More <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </Link>
                 </motion.div>
               </motion.div>
@@ -165,8 +182,8 @@ export default function Services() {
       </section>
 
       {/* Process Section */}
-      <section className="py-24 lg:py-32 bg-brand-900">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="py-16 sm:py-20 lg:py-32 bg-brand-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -182,7 +199,7 @@ export default function Services() {
             </motion.h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {[
               { step: '01', title: 'Consultation', desc: 'We discuss your event needs and goals to understand exactly what you require.' },
               { step: '02', title: 'Planning', desc: 'Our team creates a detailed production plan tailored to your event.' },
@@ -194,9 +211,9 @@ export default function Services() {
                 variants={fadeUp}
                 className="text-center relative"
               >
-                <div className="text-5xl font-bold font-display text-brand-700 mb-4">{item.step}</div>
-                <h3 className="text-white font-semibold text-lg mb-3">{item.title}</h3>
-                <p className="text-brand-400 text-sm leading-relaxed">{item.desc}</p>
+                <div className="text-4xl sm:text-5xl font-bold font-display text-brand-700 mb-3 sm:mb-4">{item.step}</div>
+                <h3 className="text-white font-semibold text-sm sm:text-base md:text-lg mb-2 sm:mb-3">{item.title}</h3>
+                <p className="text-brand-400 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
                 {index < 3 && (
                   <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-[1px] bg-brand-700" />
                 )}
@@ -207,27 +224,27 @@ export default function Services() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-accent">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+      <section className="py-16 sm:py-20 bg-accent">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
           >
-            <motion.h2 variants={fadeUp} className="font-display text-3xl sm:text-4xl font-bold text-white mb-4">
+            <motion.h2 variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
               Need Our Services?
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-white/80 text-lg mb-8 max-w-xl mx-auto">
+            <motion.p variants={fadeUp} className="text-white/80 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-xl mx-auto px-2">
               Get in touch for a free consultation and quote for your next event.
             </motion.p>
             <motion.div variants={fadeUp}>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-brand-900 text-white font-semibold text-sm uppercase tracking-wider hover:bg-brand-800 transition-all duration-300 group"
+                className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-brand-900 text-white font-semibold text-xs sm:text-sm uppercase tracking-wider hover:bg-brand-800 transition-all duration-300 group"
               >
                 Request a Quote
-                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </motion.div>
           </motion.div>
