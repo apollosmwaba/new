@@ -29,6 +29,18 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   }, [location]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   const isHome = location.pathname === '/';
   const headerBg = isScrolled || !isHome
     ? 'bg-brand-900/95 backdrop-blur-md'
@@ -70,7 +82,7 @@ export default function Header() {
               to="/contact"
               className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-2.5 bg-accent text-white text-xs sm:text-sm font-semibold tracking-wide uppercase hover:bg-accent-dark transition-colors duration-300"
             >
-              Book Now
+              Contact Us 
             </Link>
           </div>
 
