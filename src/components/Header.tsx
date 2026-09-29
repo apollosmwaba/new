@@ -99,7 +99,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-y-0 right-0 w-72 sm:w-80 bg-black shadow-2xl transition-transform duration-300 ease-in-out z-50 ${
+        className={`lg:hidden fixed inset-y-0 right-0 w-full max-w-xs sm:w-80 bg-black shadow-2xl transition-transform duration-300 ease-in-out z-50 ${
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -119,7 +119,7 @@ export default function Header() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-xl sm:text-2xl font-semibold py-4 px-5 rounded-lg border border-gray-800 transition-all duration-200 ${
+                className={`text-2xl sm:text-3xl font-semibold py-4 px-5 rounded-lg border border-gray-800 transition-all duration-200 ${
                   location.pathname === link.path
                     ? 'bg-accent border-accent text-white'
                     : 'bg-gray-900/50 text-white hover:bg-gray-800 hover:border-gray-700'
@@ -135,7 +135,7 @@ export default function Header() {
             <Link
               to="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-center px-6 py-3 bg-accent text-white font-semibold tracking-wide uppercase hover:bg-accent-dark transition-colors duration-300 rounded-lg"
+              className="block w-full text-center px-6 py-4 bg-accent text-white text-lg font-semibold tracking-wide uppercase hover:bg-accent-dark transition-colors duration-300 rounded-lg"
             >
               Book Now
             </Link>

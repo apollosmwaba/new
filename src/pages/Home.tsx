@@ -131,17 +131,17 @@ export default function Home() {
                 {slides[currentSlide].heading}
               </motion.h1>
               {slides[currentSlide].subheading && (
-                <motion.p variants={fadeUp} className="text-accent text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-wider uppercase mb-3 sm:mb-4 drop-shadow-lg text-stroke-white">
+                <motion.p variants={fadeUp} className="text-accent-white text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-wider uppercase mb-3 sm:mb-4 drop-shadow-lg text-stroke-white">
                   <TypingEffect text={slides[currentSlide].subheading} speed={30} />
                 </motion.p>
               )}
-              <motion.p variants={fadeUp} className="text-brand-300 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
+              <motion.p variants={fadeUp} className="text-brand-300 text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
                 {slides[currentSlide].description}
               </motion.p>
               <motion.div variants={fadeUp}>
                 <Link
                   to={slides[currentSlide].ctaLink}
-                  className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-accent text-white font-semibold text-xs sm:text-sm uppercase tracking-wider hover:bg-accent-dark transition-all duration-300 group"
+                  className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-4 sm:py-4 bg-accent text-white font-semibold text-sm sm:text-base uppercase tracking-wider hover:bg-accent-dark transition-all duration-300 group min-w-[160px] justify-center"
                 >
                   {slides[currentSlide].cta}
                   <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -166,20 +166,20 @@ export default function Home() {
             </div>
 
             {/* Navigation Arrows */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-3 sm:gap-3">
               <button
                 onClick={prevSlide}
-                className="w-10 h-10 sm:w-12 sm:h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-brand-900 transition-all duration-300"
+                className="w-12 h-12 sm:w-12 sm:h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-brand-900 transition-all duration-300 touch-manipulation"
                 aria-label="Previous slide"
               >
-                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                <ChevronLeft className="w-5 h-5 sm:w-5 sm:h-5" />
               </button>
               <button
                 onClick={nextSlide}
-                className="w-10 h-10 sm:w-12 sm:h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-brand-900 transition-all duration-300"
+                className="w-12 h-12 sm:w-12 sm:h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-brand-900 transition-all duration-300 touch-manipulation"
                 aria-label="Next slide"
               >
-                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                <ChevronRight className="w-5 h-5 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
@@ -195,29 +195,27 @@ export default function Home() {
       </section>
 
       {/* ABOUT PREVIEW */}
-      <section className="py-16 sm:py-20 lg:py-32 bg-brand-50">
+      <section className="py-12 sm:py-16 lg:py-32 bg-brand-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
               variants={stagger}
             >
-              <motion.p variants={fadeUp} className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4">
+              <motion.p variants={fadeUp} className="text-accent text-base font-semibold tracking-[0.2em] uppercase mb-4">
                 About Us
               </motion.p>
-              <motion.h2 variants={fadeUp} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-900 leading-tight mb-6">
+              <motion.h2 variants={fadeUp} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-900 leading-tight mb-4 sm:mb-6">
                 Pillar of Stone Zambia
               </motion.h2>
-              <motion.p variants={fadeUp} className="text-brand-600 text-lg leading-relaxed mb-6">
-                is a premier multimedia and printing company dedicated to delivering exceptional event coverage and high-quality printing solutions.We specialize in providing professional media coverage and printing services for a wide variety of events across Zambia.<br />
+              <motion.p variants={fadeUp} className="text-brand-600 text-lg sm:text-xl leading-relaxed mb-4 sm:mb-6">
+                is a premier multimedia and printing company dedicated to delivering exceptional event coverage and high quality printing solutions.We specialize in providing professional media coverage and printing services for a wide variety of events across Zambia.<br />
                 <br />
-                As your trusted event partner, we offer comprehensive media coverage including videography, photography, and sound system rentals for churches, rallies, weddings, kitchen parties, graduations, Chilanga Mulilo, birthdays, fashion shoots, engagements, anniversaries, studios, and corporate events.
+                As your trusted event partner, we offer comprehensive media coverage including videography, photography and sound system rentals for churches, rallies, weddings, kitchen parties, graduations, Chilanga Mulilo, birthdays, fashion shoots, engagements, anniversaries, studios and corporate events.
               </motion.p>
-              <motion.p variants={fadeUp} className="text-brand-500 leading-relaxed mb-8">
-                Located at Mphangwe Holdings Building, Plot 704 Freedom Way, Kabwe, we serve clients across Zambia with state-of-the-art equipment and personalized service tailored to your specific needs.
-              </motion.p>
+             
               <motion.div variants={fadeUp}>
                 <Link
                   to="/about"
@@ -254,7 +252,7 @@ src={images.hero3}
       </section>
 
       {/* SERVICES PREVIEW */}
-      <section className="py-16 sm:py-20 lg:py-32 bg-brand-900">
+      <section className="py-12 sm:py-16 lg:py-32 bg-brand-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -263,7 +261,7 @@ src={images.hero3}
             variants={stagger}
             className="text-center mb-16"
           >
-            <motion.p variants={fadeUp} className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4">
+            <motion.p variants={fadeUp} className="text-accent text-base font-semibold tracking-[0.2em] uppercase mb-4">
               What We Do
             </motion.p>
             <motion.h2 variants={fadeUp} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
@@ -271,7 +269,7 @@ src={images.hero3}
             </motion.h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-brand-700">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-700">
             {[
               { num: '01', title: 'Media Coverage', desc: 'Professional video coverage for weddings, church services, corporate events, rallies and more, with livestreaming capabilities.', img: images.hero1 },
               { num: '02', title: 'Photography', desc: 'Capturing important moments with professional photography services for events, portraits, fashion shoots and more.', img: images.hero3 },
@@ -290,12 +288,12 @@ src={images.hero3}
                   <img src={service.img} alt="" className="w-full h-full object-cover" />
                 </div>
                 <div className="relative z-10">
-                  <span className="text-accent text-sm font-bold tracking-wider">{service.num}</span>
-                  <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-white mt-3 mb-4">{service.title}</h3>
-                  <p className="text-brand-400 leading-relaxed mb-6">{service.desc}</p>
+                  <span className="text-accent text-base font-bold tracking-wider">{service.num}</span>
+                  <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white mt-3 mb-4">{service.title}</h3>
+                  <p className="text-brand-400 text-base sm:text-lg leading-relaxed mb-6">{service.desc}</p>
                   <Link
                     to="/services"
-                    className="inline-flex items-center gap-2 text-accent text-sm font-semibold uppercase tracking-wider group-hover:gap-3 transition-all duration-300"
+                    className="inline-flex items-center gap-2 text-accent text-base font-semibold uppercase tracking-wider group-hover:gap-3 transition-all duration-300"
                   >
                     Learn More <ArrowRight size={14} />
                   </Link>
@@ -307,9 +305,9 @@ src={images.hero3}
       </section>
 
       {/* WHY CHOOSE US */}
-      <section className="py-16 sm:py-20 lg:py-32 bg-brand-50">
+      <section className="py-12 sm:py-16 lg:py-32 bg-brand-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -317,14 +315,14 @@ src={images.hero3}
               variants={stagger}
               className="lg:col-span-5"
             >
-              <motion.p variants={fadeUp} className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4">
+              <motion.p variants={fadeUp} className="text-accent text-base font-semibold tracking-[0.2em] uppercase mb-4">
                 Our Standards
               </motion.p>
               <motion.h2 variants={fadeUp} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-900 leading-tight mb-6">
                 Why Choose Pillar of Stone Zambia?
               </motion.h2>
               <motion.p variants={fadeUp} className="text-brand-500 leading-relaxed">
-                We don't just cover events — we elevate them. Our team brings years of experience, professional-grade equipment, and an unwavering commitment to excellence to every project.
+                We don't just cover events. Our team brings years of experience, professional-grade equipment and an unwavering commitment to excellence to every project.
               </motion.p>
             </motion.div>
 
@@ -337,7 +335,7 @@ src={images.hero3}
             >
               {[
                 { title: 'Professional Quality', desc: 'Industry-leading standards in every service we provide. From 4K video production to large-format printing, we deliver results that exceed expectations.' },
-                { title: 'Timely Delivery', desc: 'On-time completion of projects and event coverage. We understand that deadlines matter, and we consistently meet them without compromising quality.' },
+                { title: 'Timely Delivery', desc: ' We understand that deadlines matter and we consistently meet them without compromising quality.' },
                 { title: 'Reliable Support', desc: 'Dedicated customer support throughout your project. From initial consultation to final delivery, our team is with you every step of the way.' },
               ].map((feature, index) => (
                 <motion.div
@@ -349,8 +347,8 @@ src={images.hero3}
                     <CheckCircle size={20} className="text-accent group-hover:text-white transition-colors duration-300" />
                   </div>
                   <div>
-                    <h3 className="font-display text-xl font-bold text-brand-900 mb-2">{feature.title}</h3>
-                    <p className="text-brand-500 leading-relaxed">{feature.desc}</p>
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-900 mb-2">{feature.title}</h3>
+                    <p className="text-brand-500 text-base sm:text-lg leading-relaxed">{feature.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -360,7 +358,7 @@ src={images.hero3}
       </section>
 
       {/* YOUTUBE / MEDIA SECTION */}
-      <section className="py-16 sm:py-20 lg:py-32 bg-brand-100">
+      <section className="py-12 sm:py-16 lg:py-32 bg-brand-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -369,18 +367,18 @@ src={images.hero3}
             variants={stagger}
             className="text-center mb-16"
           >
-            <motion.p variants={fadeUp} className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4">
+            <motion.p variants={fadeUp} className="text-accent text-base font-semibold tracking-[0.2em] uppercase mb-4">
               Our Work
             </motion.p>
             <motion.h2 variants={fadeUp} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-900 leading-tight mb-4">
               A Preview of Some of Our YouTube Streams
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-brand-500 text-lg">
+            <motion.p variants={fadeUp} className="text-brand-500 text-lg sm:text-xl">
               See our professional work in action.
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
             {videos.slice(0, 3).map((video, index) => (
               <motion.a
                 key={video.id}
@@ -430,7 +428,7 @@ src={images.hero3}
       </section>
 
       {/* PORTFOLIO PREVIEW */}
-      <section className="py-16 sm:py-20 lg:py-32 bg-white">
+      <section className="py-12 sm:py-16 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -439,13 +437,13 @@ src={images.hero3}
             variants={stagger}
             className="text-center mb-16"
           >
-            <motion.p variants={fadeUp} className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4">
+            <motion.p variants={fadeUp} className="text-accent text-base font-semibold tracking-[0.2em] uppercase mb-4">
               Portfolio
             </motion.p>
             <motion.h2 variants={fadeUp} className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-900 leading-tight mb-4">
               Our Portfolio
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-brand-500 text-lg">
+            <motion.p variants={fadeUp} className="text-brand-500 text-lg sm:text-xl">
               Visual proof of our exceptional work and satisfied clients.
             </motion.p>
           </motion.div>
@@ -499,7 +497,7 @@ src={images.hero3}
       </section>
 
       {/* CTA SECTION */}
-      <section className="relative py-16 sm:py-20 lg:py-32 overflow-hidden">
+      <section className="relative py-12 sm:py-16 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <img src={images.hero1} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-brand-900/85" />
@@ -511,23 +509,23 @@ src={images.hero3}
             viewport={{ once: true }}
             variants={stagger}
           >
-            <motion.h2 variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 sm:mb-6">
+            <motion.h2 variants={fadeUp} className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 sm:mb-6">
               Planning an Event?
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-brand-300 text-base sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-10 px-2">
+            <motion.p variants={fadeUp} className="text-brand-300 text-lg sm:text-xl max-w-2xl mx-auto mb-8 sm:mb-10 px-2">
               Let us help you make it unforgettable with our professional media coverage and printing services.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-accent text-white font-semibold text-xs sm:text-sm uppercase tracking-wider hover:bg-accent-dark transition-all duration-300 group w-full sm:w-auto justify-center"
+                className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-4 sm:py-4 bg-accent text-white font-semibold text-sm sm:text-base uppercase tracking-wider hover:bg-accent-dark transition-all duration-300 group w-full sm:w-auto justify-center min-w-[160px] touch-manipulation"
               >
                 Contact Us Now
                 <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white font-semibold text-xs sm:text-sm uppercase tracking-wider hover:bg-white hover:text-brand-900 transition-all duration-300 w-full sm:w-auto justify-center"
+                className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-4 sm:py-4 border-2 border-white text-white font-semibold text-sm sm:text-base uppercase tracking-wider hover:bg-white hover:text-brand-900 transition-all duration-300 w-full sm:w-auto justify-center min-w-[160px] touch-manipulation"
               >
                 Get a Quote
               </Link>

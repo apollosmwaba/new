@@ -14,6 +14,7 @@
   --color-accent: #2563EB;
   --color-accent-dark: #1D4ED8;
   --color-accent-light: #93C5FD;
+  --color-accent-text: #FFFFFF;
   --font-display: 'Playfair Display', serif;
   --font-body: 'Inter', sans-serif;
 }
@@ -63,6 +64,34 @@ body {
 
 .font-body {
   font-family: var(--font-body);
+}
+
+/* Text color utilities */
+.text-accent-white {
+  color: var(--color-accent-text);
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .mobile-optimized {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  .mobile-padding {
+    padding: 0.75rem;
+  }
+  
+  .mobile-text-base {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+/* Touch optimization */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Animation utilities */
@@ -136,7 +165,7 @@ body {
 }
 
 /* Text stroke utility */
-.text-stroke-white {
+/* .text-stroke-white {
   -webkit-text-stroke: 1px rgb(0, 4, 255);
   text-stroke: 1px rgb(206, 202, 202);
-}
+} */
